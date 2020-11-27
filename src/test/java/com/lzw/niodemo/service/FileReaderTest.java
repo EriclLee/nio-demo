@@ -13,7 +13,7 @@ class FileReaderTest {
         String rootPath = this.getClass().getResource("/read_test").getFile();
         LZWFileReader LZWFileReader = new LZWFileReader(rootPath);
         String content = LZWFileReader.read();
-        assertEquals(content.length(), 881);
+        assertEquals(content.length(), 885);
     }
 
     @Test
