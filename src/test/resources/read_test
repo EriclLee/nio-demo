@@ -1,0 +1,29 @@
+package com.lzw.niodemo.service;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+
+public class FileReader {
+    private String fileName;
+
+    public FileReader(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public String read() throws IOException {
+        StringBuilder contentBuilder = new StringBuilder();
+        RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");
+        FileChannel inChannel = aFile.getChannel();
+        ByteBuffer buffer = ByteBuffer.allocate(5);
+        int bytesRead = inChannel.read(buffer);
+        while (bytesRead != 0) {
+            buffer.flip();
+            contentBuilder.append(buffer.get());
+            buffer.clear();
+            bytesRead = inChannel.read(buffer);
+        }
+        return contentBuilder.toString();
+    }
+}
