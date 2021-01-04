@@ -28,3 +28,16 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+
+task intTest(type: Test) {
+    include '**/*IntegrationTest.class'
+    useJUnitPlatform()
+}
+
+task unitTest(type: Test){
+    include '**/*Test.class'
+    exclude '**/*IntegrationTest.class'
+    useJUnitPlatform()
+}
+
